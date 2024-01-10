@@ -26,15 +26,21 @@ export default {
   },
   methods: {
     async getAnswer() {
-      this.answer = 'Thinking...';
-      const {answer, image} = await fetch('https://yesno.wtf/api').then( resp => resp.json() )
-      this.answer = answer;
-      this.image = image;
+      try {
+        this.answer = 'Thinking...';
+        const {answer, image} = await fetch('https://yesno.wtf/api').then( resp => resp.json() )
+        this.answer = answer;
+        this.image = image;
+      } catch (e) {
+        this.answer = 'error';
+        this.img = null;
+      }
     }
   },
   watch: {
     question: function (value) {
       this.isValidQuestion = false;
+      console.log({value})
       if(!value.includes('?')) return;
       this.isValidQuestion = true;
       this.getAnswer();

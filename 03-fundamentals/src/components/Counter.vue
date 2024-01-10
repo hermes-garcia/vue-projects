@@ -1,6 +1,7 @@
 <template>
   <h2>{{ customTitle }}</h2>
   <p>{{counter}} <sup>2</sup> = {{squareCounter}}</p>
+  <p data-testId="counter">{{counter}}</p>
 
   <div>
     <button @click="increase">+1</button>
@@ -28,7 +29,6 @@ export default {
   },
   computed: {
     squareCounter() {
-      console.log('computed square counter');
       return this.counter * this.counter;
     },
 
@@ -38,7 +38,6 @@ export default {
   },
   methods: {
     getSquare() {
-      console.log('get square counter');
       return this.counter * this.counter;
     },
 
